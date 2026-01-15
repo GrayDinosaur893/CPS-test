@@ -3,8 +3,8 @@ const ClickincBtn = document.getElementById("ClincBtn");
 const ClickresetBtn = document.getElementById("ClresetBtn");
 const Clickresult = document.getElementById("Clresult");
 const timeLeftEl = document.getElementById("Cltime");
-const bestCpsEl = document.getElementById("bestCps");
-const note = document.getElementById("cln");
+const bestCpsEl = document.getElementById("Clbest");
+const note = document.getElementById("note");
 
 let clickCount = 0;
 let running = false;
@@ -86,6 +86,7 @@ function endTest() {
 
  // ALWAYS show something
  note.textContent = messages[cps] || "Bro this not INC seats in election?";
+ note.style.display = "block";
 
 }
 

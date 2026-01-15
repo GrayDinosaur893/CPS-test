@@ -147,7 +147,7 @@ button{
 
     padding: 0.8rem 1rem;
     margin-top: 0.8rem;
-             /* hidden by default */
+    display: none;    /* hidden by default */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -156,4 +156,8 @@ button{
     border: 2px solid #c9a700;
     border-radius: 10px;
 }
+
+
+
+
 
