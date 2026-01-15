@@ -4,7 +4,7 @@ const ClickresetBtn = document.getElementById("ClresetBtn");
 const Clickresult = document.getElementById("Clresult");
 const timeLeftEl = document.getElementById("Cltime");
 const bestCpsEl = document.getElementById("bestCps");
-const fEb = document.getElementById("cln");
+const note = document.getElementById("cln");
 
 let clickCount = 0;
 let running = false;
@@ -32,7 +32,6 @@ function startTest() {
     finished = false;
     clickCount = 0;
     Clickcount.textContent = 0;
-    fEb.textContent = "";
     startTime = performance.now();
     requestAnimationFrame(updateTimer);
 }
@@ -58,57 +57,36 @@ function endTest() {
     running = false;
     finished = true;
 
-    let cps = clickCount / (duration / 1000);
-    cps = Math.round(cps);
+    let cps = Math.round(clickCount / (duration / 1000));
 
     Clickresult.textContent = `Your CPS: ${cps}`;
+    console.log(cps);
 
     /* ----- BEST CPS ----- */
     if (cps > bestCps) {
         bestCps = cps;
         bestCpsEl.textContent = `Best CPS: ${bestCps}`;
+    
+
     }
 
     /* ----- YOUR STATEMENTS ----- */
-    if (cps < 0) {
-        alert("kuch kar le madarchod");
-    } 
-    else if (cps > 20) {
-        alert("bhag bc tere jese logon ki wajah se hi duniya kharab hai");
-    }
-    else if (cps === 10) {
-        fEb.textContent = "Wow! You clicked 10 times per sec ! Keep going! just like i clapped ur mom yesterday";
-    }
-    else if (cps === 9) {
-        fEb.textContent = "Amazing! 9 cps already! are you aisha?";
-    }
-    else if (cps === 8) {
-        fEb.textContent = "Great! 8 cps! you should go on a DATE and MATE MATE";
-    }
-    else if (cps === 7) {
-        fEb.textContent = "Nice! 7 cps! If She is Seven feels like heaven?";
-    }
-    else if (cps === 6) {
-        fEb.textContent = "Good! 6 cps! ik u beat ur meat harder than this ?";
-    }
-    else if (cps === 5) {
-        fEb.textContent = "Not Bad! 5 cps! i will tell ur gf that ur a pedofile";
-    }
-    else if (cps === 4) {
-        fEb.textContent = "Keep Trying! 4 cps! You can do better!";
-    }
-    else if (cps === 3) {
-        fEb.textContent = "just 3 cps! thats number of holes in your mom !";
-    }
-    else if (cps === 2) {
-        fEb.textContent = "Come on! 2 cps! even your crush had 3 ex and still ghosted you!";
-    }
-    else if (cps === 1) {
-        fEb.textContent = "Let's go! 1 cps! You got this bitch!";
-    }
-    else {
-        fEb.textContent = "Bro this not INC seats in election?";
-    }
+  const messages = {
+  10: "Wow! You clicked 10 times per sec ! Keep going! just like i clapped ur mom yesterday",
+  9: "Amazing! 9 cps already! are you aisha?",
+  8: "Great! 8 cps! you should go on a DATE and MATE MATE",
+  7: "Nice! 7 cps! If She is Seven feels like heaven?",
+  6: "Good! 6 cps! ik u beat ur meat harder than this ?",
+  5: "Not Bad! 5 cps! i will tell ur gf that ur a pedofile",
+  4: "Keep Trying! 4 cps! You can do better!",
+  3: "just 3 cps! thats number of holes in your mom !",
+  2: "Come on! 2 cps! even your crush had 3 ex and still ghosted you!",
+  1: "Let's go! 1 cps! You got this bitch!"
+ };
+
+ // ALWAYS show something
+ note.textContent = messages[cps] || "Bro this not INC seats in election?";
+
 }
 
 /* ---------- RESET ---------- */
@@ -116,9 +94,10 @@ function resetTest() {
     running = false;
     finished = false;
     clickCount = 0;
+    note.style.display = "none";
 
     Clickcount.textContent = 0;
     Clickresult.textContent = "Your CPS: 0";
     timeLeftEl.textContent = "Time Left: 5.0s";
-    fEb.textContent = "";
+    note.textContent = "";
 }
